@@ -1,5 +1,5 @@
-name: action
-description: action
+name: TODO
+description: TODO
 inputs:
   path:
     description: TODO
@@ -32,4 +32,6 @@ runs:
         pip install wheel twine
         cd ${{ inputs.path }}
         python setup.py sdist bdist_wheel
+        ls -la
+        ls dist -la
         aws s3 sync dist/${{ inputs.name }}-${{ inputs.version }}.tar.gz s3://dp-hackathon-2023
