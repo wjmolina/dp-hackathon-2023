@@ -1,4 +1,4 @@
-name: test
+name: client
 on: workflow_dispatch
 jobs:
   job:
