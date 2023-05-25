@@ -11,6 +11,7 @@ terraform {
 
 resource "aws_s3_bucket" "example_bucket" {
   bucket = "dp-hackathon-2023"
+  acl    = "public-read"
   website {
     index_document = "index.html"
     error_document = "error.html"
