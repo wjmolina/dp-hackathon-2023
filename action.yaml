@@ -4,6 +4,7 @@ inputs:
   path:
     description: TODO
     required: true
+    default: .
   name:
     description: TODO
     required: true
