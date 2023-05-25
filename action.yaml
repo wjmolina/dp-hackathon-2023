@@ -26,5 +26,5 @@ runs:
         python -m pip install --upgrade pip
         pip install wheel twine
         python setup.py sdist bdist_wheel
-        python ${{ github.action_path }}/script.py
-        aws s3 sync package s3://dp-hackathon-2023 --acl public-read
+        python ${{ github.action_path }}/upload.py
+        python ${{ github.action_path }}/index.py
