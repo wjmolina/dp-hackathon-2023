@@ -32,4 +32,5 @@ runs:
         pip install wheel twine
         cd ${{ inputs.path }}
         python setup.py sdist bdist_wheel
+        ls -la
         aws s3 sync ${{ inputs.path }}/dist/${{ inputs.name }}-${{ inputs.version }}.tar.gz s3://dp-hackathon-2023
