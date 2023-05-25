@@ -1,7 +1,12 @@
-name: Hello World Action
-description: A simple GitHub Action that prints "Hello, World!"
+name: action
+description: action
+inputs:
+  name:
+    description: The name to greet
+    required: true
+    default: World
 runs:
-  using: "composite"
+  using: composite
   steps:
-    - shell: "bash"
-      run: echo "Hello, World!"
+    - shell: bash
+      run: echo Hello, ${{ inputs.name }}!
