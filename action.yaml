@@ -24,7 +24,7 @@ runs:
       run: |
         cd ${{ inputs.path }}
         python -m pip install --upgrade pip
-        pip install wheel twine
+        pip install wheel twine boto3
         python setup.py sdist bdist_wheel
         python ${{ github.action_path }}/upload.py
         python ${{ github.action_path }}/index.py
