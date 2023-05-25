@@ -1,14 +1,10 @@
-name: TODO
-description: TODO
+name: Upload and Index Python Packages to S3
 inputs:
   aws_access_key_id:
-    description: TODO
     required: true
   aws_secret_access_key:
-    description: TODO
     required: true
   path:
-    description: TODO
     default: .
 runs:
   using: composite
