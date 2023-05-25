@@ -24,4 +24,10 @@ for root, _, files in os.walk(local_directory):
             s3_path = os.path.relpath(local_file, local_directory).replace(os.path.sep, "/")
 
             with open(local_file, "rb") as file_data:
-                s3.put_object(Bucket=bucket_name, Key=s3_path, Body=file_data, ContentType="application/gzip", ACL="public-read")
+                s3.put_object(
+                    Bucket=bucket_name,
+                    Key=s3_path,
+                    Body=file_data,
+                    ContentType="application/gzip",
+                    ACL="public-read",
+                )
