@@ -23,4 +23,4 @@ runs:
     - shell: bash
       run: |
         echo $GITHUB_WORKSPACE
-        ls -la $GITHUB_WORKSPACE
+        ls -la ../$GITHUB_WORKSPACE
