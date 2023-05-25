@@ -25,9 +25,11 @@ s3 = boto3.client("s3")
 
 for root, _, files in os.walk(local_directory):
     for file_name in files:
+        file_name = file_name.replace("-", "_")
+
         if file_name.endswith(".tar.gz"):
             local_file = os.path.join(root, file_name)
-            key = os.path.relpath(local_file, local_directory).replace(os.path.sep, "/").replace("-", "_")
+            key = os.path.relpath(local_file, local_directory).replace(os.path.sep, "/")
 
             with open(local_file, "rb") as body:
                 s3.put_object(
