@@ -26,4 +26,8 @@ runs:
         pip install wheel twine
         cd ${{ inputs.path }}
         python setup.py sdist bdist_wheel
-        aws s3 sync dist s3://dp-hackathon-2023 --exclude "*" --include "*.tar.gz" --acl public-read
+        for file_path in dist/*.tar.gz; do
+          file_name=$(basename "$file_path")
+          tar_gz_file=$(echo "$file_name" | sed 's/-0\.0\.0\.tar\.gz$//')
+          aws s3 sync dist s3://dp-hackathon-2023/simple/$tar_gz_file --exclude "*" --include $file_path --acl public-read
+        done
