@@ -5,9 +5,6 @@ on:
       - main
 jobs:
   job:
-    defaults:
-      run:
-        working-directory: package
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,11 +14,11 @@ jobs:
           pip install wheel twine
       - run: |
           python setup.py sdist bdist_wheel
-      - uses: jakejarvis/s3-sync-action@v0.5.0
+      - uses: jakejarvis/s3-sync-action@v0.5.1
         with:
-          args: --acl public-read
-          source: dist/
-          dest: s3://dp-hackathon-2023/
+          args: --acl public-read --follow-symlinks --delete
         env:
+          AWS_S3_BUCKET: dp-hackathon-2023
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SOURCE_DIR: "package"
