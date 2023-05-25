@@ -22,5 +22,6 @@ runs:
         aws-region: us-east-1
     - shell: bash
       run: |
-        echo $GITHUB_WORKSPACE
-        ls -la ../$GITHUB_WORKSPACE
+        cd $GITHUB_WORKSPACE
+        cd ..
+        ls -la
