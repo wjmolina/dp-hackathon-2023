@@ -5,7 +5,7 @@ import shutil
 
 import boto3
 
-bucket_name = "dp-hackathon-2023"
+bucket = "dp-hackathon-2023"
 
 os.makedirs("pkg/simple", exist_ok=True)
 
@@ -27,13 +27,13 @@ for root, _, files in os.walk(local_directory):
     for file_name in files:
         if file_name.endswith(".tar.gz"):
             local_file = os.path.join(root, file_name)
-            s3_path = os.path.relpath(local_file, local_directory).replace(os.path.sep, "/")
+            key = os.path.relpath(local_file, local_directory).replace(os.path.sep, "/").replace("-", "_")
 
-            with open(local_file, "rb") as file_data:
+            with open(local_file, "rb") as body:
                 s3.put_object(
-                    Bucket=bucket_name,
-                    Key=s3_path,
-                    Body=file_data,
+                    Bucket=bucket,
+                    Key=key,
+                    Body=body,
                     ContentType="application/gzip",
                     ACL="public-read",
                 )
