@@ -30,6 +30,6 @@ runs:
     - uses: jakejarvis/s3-sync-action@v0.5.1
       env:
         AWS_S3_BUCKET: dp-hackathon-2023
-        AWS_ACCESS_KEY_ID: ${{ input.aws_access_key_id }}
-        AWS_SECRET_ACCESS_KEY: ${{ input.aws_secret_access_key }}
+        AWS_ACCESS_KEY_ID: ${{ inputs.aws_access_key_id }}
+        AWS_SECRET_ACCESS_KEY: ${{ inputs.aws_secret_access_key }}
         SOURCE_DIR: ${{ inputs.path }}/dist/${{ inputs.name }}-${{ inputs.version }}.tar.gz
