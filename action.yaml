@@ -22,6 +22,4 @@ runs:
         aws-region: us-east-1
     - shell: bash
       run: |
-        cd $GITHUB_WORKSPACE
-        cd ..
-        ls -la
+        ls ${{ github.action_path }} -la
