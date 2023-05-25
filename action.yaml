@@ -25,6 +25,7 @@ runs:
       with:
         aws-access-key-id: ${{ inputs.aws_access_key_id }}
         aws-secret-access-key: ${{ inputs.aws_secret_access_key }}
+        aws-region: us-east-1
     - shell: bash
       run: |
         python -m pip install --upgrade pip
