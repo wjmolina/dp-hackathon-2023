@@ -5,6 +5,9 @@ on:
       - main
 jobs:
   job:
+    defaults:
+      run:
+        working-directory: package
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
