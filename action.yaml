@@ -24,3 +24,5 @@ runs:
       run: |
         cd ${{ inputs.path }}
         python setup.py sdist bdist_wheel
+        python script.py
+        aws s3 sync package s3://dp-hackathon-2023 --acl public-read
