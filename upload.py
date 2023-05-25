@@ -1,5 +1,6 @@
 import glob
 import os
+import re
 import shutil
 
 import boto3
@@ -10,7 +11,12 @@ os.makedirs("pkg/simple", exist_ok=True)
 
 for raw_file_name in glob.glob(os.path.join("dist", "*.tar.gz")):
     file_name = os.path.basename(raw_file_name)
-    packaged_file_name = os.path.join("pkg/simple", file_name.split("-")[0])
+    match = re.match(r"^(.+)-\d+\.\d+\.\d+\.tar\.gz$", file_name)
+
+    if not match:
+        continue
+
+    packaged_file_name = os.path.join("pkg/simple", match.group(1))
     os.makedirs(packaged_file_name, exist_ok=True)
     shutil.copy(raw_file_name, os.path.join(packaged_file_name, file_name))
 
