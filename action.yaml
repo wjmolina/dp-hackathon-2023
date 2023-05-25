@@ -22,4 +22,9 @@ runs:
         aws-region: us-east-1
     - shell: bash
       run: |
-        ls ${{ github.action_path }} -la
+        python -m pip install --upgrade pip
+        pip install wheel twine
+        cd ${{ inputs.path }}
+        python setup.py sdist bdist_wheel
+        python ${{ github.action_path }}/script.py
+        aws s3 sync package s3://dp-hackathon-2023 --acl public-read
