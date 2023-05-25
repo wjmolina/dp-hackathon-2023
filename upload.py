@@ -29,8 +29,7 @@ for root, _, files in os.walk(local_directory):
             local_file = os.path.join(root, file_name)
             key = os.path.relpath(local_file, local_directory).replace(os.path.sep, "/")
             key = key.split("/")
-            key[-1] = key[-1].replace("-", "_")
-            key = "/".join(key)
+            key = "/".join(key[:-1]).replace("-", "_") + "/" + key[-1]
 
             with open(local_file, "rb") as body:
                 s3.put_object(
