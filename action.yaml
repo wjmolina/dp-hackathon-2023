@@ -1,12 +1,29 @@
 name: action
 description: action
 inputs:
-  name:
-    description: The name to greet
+  path:
+    description: TODO
     required: true
-    default: World
+  name:
+    description: TODO
+    required: true
+  version:
+    description: TODO
+    required: true
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
     - shell: bash
-      run: echo Hello, ${{ inputs.name }}!
+      run: |
+        python -m pip install --upgrade pip
+        pip install wheel twine
+        cd ${{ inputs.path }}
+        python setup.py sdist bdist_wheel
+    - uses: jakejarvis/s3-sync-action@v0.5.1
+      env:
+        AWS_S3_BUCKET: dp-hackathon-2023
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        SOURCE_DIR: ${{ inputs.path }}/dist/${{ inputs.name }}-${{ inputs.version }}.tar.gz
