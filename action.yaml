@@ -1,22 +1,15 @@
 name: TODO
 description: TODO
 inputs:
-  path:
-    description: TODO
-    required: true
-    default: .
-  name:
-    description: TODO
-    required: true
-  version:
-    description: TODO
-    required: true
   aws_access_key_id:
     description: TODO
     required: true
   aws_secret_access_key:
     description: TODO
     required: true
+  path:
+    description: TODO
+    default: .
 runs:
   using: composite
   steps:
