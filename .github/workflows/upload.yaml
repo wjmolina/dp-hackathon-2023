@@ -1,10 +1,5 @@
 name: upload
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - "package/**"
+on: workflow_dispatch
 jobs:
   job:
     defaults:
